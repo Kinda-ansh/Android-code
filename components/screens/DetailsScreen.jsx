@@ -1,0 +1,32 @@
+// import React from "react";
+// import { Button, View, Text } from "react-native";
+
+// const DetailsScreen = () => {
+//   return (
+//     <View style={{ flex: 1, alignItems: "center", justifyContent: "center" }}>
+//       <Text>Home Screen</Text>
+//       <Button
+//         title="Go to Details"
+//         onPress={() => navigation.navigate("Details")}
+//       />
+//     </View>
+//   );
+// };
+
+// export default DetailsScreen;
+
+import * as React from "react";
+import { View, Text, Button } from "react-native";
+
+function DetailsScreen(navigation) {
+  return (
+    <View style={{ flex: 1, alignItems: "center", justifyContent: "center" }}>
+      <Button
+        title="Go to Details"
+        onPress={() => navigation.navigate("Info")}
+      />
+    </View>
+  );
+}
+
+export default DetailsScreen;
