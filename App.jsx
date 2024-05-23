@@ -20,68 +20,74 @@
 // }
 
 // export default App;
-import * as React from "react";
-import { View, Text, Button } from "react-native";
+import React from "react";
 import { NavigationContainer } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
+
+import SplashScreen from "./components/screens/SplaceScreen";
+import { Button, Text, View } from "react-native";
+// import HomeScreenMain from "./components/HomeScreenMain";
+import Table from "./components/Table";
+
+const Stack = createStackNavigator();
 
 function DetailsScreen({ navigation }) {
   return (
     <View style={{ flex: 1, alignItems: "center", justifyContent: "center" }}>
-      <Button title="Go to Info" onPress={() => navigation.navigate("Info")} />
-    </View>
-  );
-}
-
-function InfoScreen({ navigation }) {
-  return (
-    <View style={{ flex: 1, alignItems: "center", justifyContent: "center" }}>
-      <Text>Info Screen</Text>
       <Button
-        title="Go to Settings"
-        onPress={() => navigation.navigate("Setting")}
-      />
-    </View>
-  );
-}
-
-function Setting({ navigation }) {
-  return (
-    <View style={{ flex: 1, alignItems: "center", justifyContent: "center" }}>
-      <Text>Setting Screen</Text>
-      <Button
-        title="Welcome to setting"
+        title="Welcome to KINDA SOULUTIONS"
         onPress={() => navigation.navigate("Details")}
       />
     </View>
   );
 }
 
-const DetailsStack = createStackNavigator();
-
-function DetailsStackScreen() {
+function InfoScreen({ navigation }) {
   return (
-    <DetailsStack.Navigator>
-      <DetailsStack.Screen name="Details" component={DetailsScreen} />
-      <DetailsStack.Screen name="Info" component={InfoScreen} />
-      <DetailsStack.Screen name="Setting" component={Setting} />
-    </DetailsStack.Navigator>
+    <View
+      style={{
+        flex: 1,
+        alignItems: "center",
+        justifyContent: "center",
+        padding: "10px",
+      }}
+    >
+      <Text>Info Screen</Text>
+      <Button
+        title="Go to Settings"
+        onPress={() => navigation.navigate("Table")}
+      />
+      <Button
+        title="Go To Home"
+        onPress={() => navigation.navigate("Home")}
+        style={{ paddingTop: "10px" }}
+      />
+    </View>
   );
 }
 
-const RootStack = createStackNavigator();
-
 function App() {
   return (
-    <NavigationContainer>
-      <RootStack.Navigator initialRouteName="DetailsStack">
-        <RootStack.Screen
-          name="DetailsStack"
-          component={DetailsStackScreen}
-          options={{ headerShown: false }}
-        />
-      </RootStack.Navigator>
-    </NavigationContainer>
+    <>
+      {/* <HomeScreenMain /> */}
+      <NavigationContainer>
+        <Stack.Navigator initialRouteName="Splash">
+          <Stack.Screen
+            name="Splash"
+            component={SplashScreen}
+            options={{ headerShown: false }}
+          />
+          <Stack.Screen
+            name="Home"
+            component={DetailsScreen}
+            // options={{ headerShown: false }}
+          />
+
+          <Stack.Screen name="Details" component={InfoScreen} />
+          <Stack.Screen name="Table" component={Table} />
+        </Stack.Navigator>
+      </NavigationContainer>
+    </>
   );
 }
 
