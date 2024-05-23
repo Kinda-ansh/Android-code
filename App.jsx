@@ -25,20 +25,25 @@ import { NavigationContainer } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
 
 import SplashScreen from "./components/screens/SplaceScreen";
-import { Button, Text, View } from "react-native";
+import { Button, Image, Text, View } from "react-native";
 // import HomeScreenMain from "./components/HomeScreenMain";
 import Table from "./components/Table";
+import HomeCarousel from "./components/HomeCarousel";
+import { ScrollView } from "react-native-gesture-handler";
 
 const Stack = createStackNavigator();
 
 function DetailsScreen({ navigation }) {
   return (
-    <View style={{ flex: 1, alignItems: "center", justifyContent: "center" }}>
-      <Button
-        title="Welcome to KINDA SOULUTIONS"
-        onPress={() => navigation.navigate("Details")}
-      />
-    </View>
+    <ScrollView style={{ flex: 1 }}>
+      <HomeCarousel />
+      <View style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>
+        <Button
+          title="Welcome to KINDA SOULUTIONS"
+          onPress={() => navigation.navigate("Details")}
+        />
+      </View>
+    </ScrollView>
   );
 }
 
@@ -65,6 +70,21 @@ function InfoScreen({ navigation }) {
     </View>
   );
 }
+function LogoTitle() {
+  return (
+    <Image
+      style={{
+        resizeMode: "contain",
+        height: 120,
+        width: 120,
+        justifyContent: "center",
+        alignItems: "center",
+        padding: 0,
+      }}
+      source={require("./assets/Kinda-HRMS__LogoCroped.png")}
+    />
+  );
+}
 
 function App() {
   return (
@@ -80,6 +100,17 @@ function App() {
           <Stack.Screen
             name="Home"
             component={DetailsScreen}
+            options={{
+              headerTitle: (props) => <LogoTitle {...props} />,
+
+              headerStyle: {
+                backgroundColor: "#fff",
+              },
+              headerTintColor: "#fff",
+              headerTitleStyle: {
+                fontWeight: "bold",
+              },
+            }}
             // options={{ headerShown: false }}
           />
 
